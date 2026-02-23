@@ -52,7 +52,7 @@ namespace LOLWPF
 
                     var response = JsonSerializer.Deserialize<ChampionData>(responseApi);
                     Program.champions = response.Data.Values.ToList();
-                    lbxChampions.ItemsSource = Program.champions.Select(c => c.Title);
+                    lbxChampions.ItemsSource = Program.champions.Select(c => $"{c.Name} {c.Title}");
 
                 }
             }
@@ -109,7 +109,7 @@ namespace LOLWPF
 
         private void lbxChampions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(Program.champions[lbxChampions.SelectedIndex].Name);
+            MessageBox.Show(Program.champions[lbxChampions.SelectedIndex].Title);
         }
     }
 }
