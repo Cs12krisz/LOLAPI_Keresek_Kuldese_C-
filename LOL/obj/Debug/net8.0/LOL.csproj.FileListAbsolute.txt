@@ -1,0 +1,14 @@
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.AssemblyInfoInputs.cache
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.AssemblyInfo.cs
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.csproj.CoreCompileInputs.cache
+C:\Users\CsKrisz\source\repos\LOL\LOL\bin\Debug\net8.0\LOL.exe
+C:\Users\CsKrisz\source\repos\LOL\LOL\bin\Debug\net8.0\LOL.deps.json
+C:\Users\CsKrisz\source\repos\LOL\LOL\bin\Debug\net8.0\LOL.runtimeconfig.json
+C:\Users\CsKrisz\source\repos\LOL\LOL\bin\Debug\net8.0\LOL.dll
+C:\Users\CsKrisz\source\repos\LOL\LOL\bin\Debug\net8.0\LOL.pdb
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.dll
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\refint\LOL.dll
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.pdb
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\LOL.genruntimeconfig.cache
+C:\Users\CsKrisz\source\repos\LOL\LOL\obj\Debug\net8.0\ref\LOL.dll
