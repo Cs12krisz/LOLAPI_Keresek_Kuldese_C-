@@ -22,6 +22,7 @@ namespace LOLWPF
     public partial class MainWindow : Window
     {
         string[] languages = null;
+        string nyelv = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace LOLWPF
 
         public async Task Load()
         {
+            await Program.VerziokBetoltes();
             await LoadLanguages();
             await LoadChampions();
 
@@ -39,12 +41,12 @@ namespace LOLWPF
         {
             try
             {
-                await Program.VerziokBetoltes();
+
                 using (HttpClient client = new HttpClient())
                 {
                     client.Timeout = TimeSpan.FromSeconds(30);
 
-                    string url = $"https://ddragon.leagueoflegends.com/cdn/{Program.version}/data/{cbxNyelvek.Text}/champion.json";
+                    string url = $"https://ddragon.leagueoflegends.com/cdn/{Program.version}/data/{nyelv}/champion.json";
 
                     var responseApi = await client.GetStringAsync(url);
 
@@ -84,6 +86,7 @@ namespace LOLWPF
                     languages = response;
                     cbxNyelvek.ItemsSource = languages;
                     cbxNyelvek.SelectedIndex = 1;
+                    nyelv = cbxNyelvek.SelectedValue.ToString();
                 }
             }
             catch (HttpRequestException httpEx)
@@ -102,12 +105,13 @@ namespace LOLWPF
 
         private async void cbxNyelvek_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            nyelv = cbxNyelvek.SelectedValue.ToString();
             await LoadChampions();
         }
 
         private void lbxChampions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            MessageBox.Show(Program.champions[lbxChampions.SelectedIndex].Name);
         }
     }
 }
