@@ -5,22 +5,21 @@ using static System.Net.WebRequestMethods;
 
 namespace LOL
 {
-    internal class Program
+    public static class Program
     {
-        static string version = "1.0";
-        static List<Champion> champions = new List<Champion>();
+        public static string version = "1.0";
+        public static List<Champion> champions = new List<Champion>();
 
         static async Task Main(string[] args)
         {
-            await VerziokBetoltes();
-            Console.WriteLine(version);
             await LoadChampions();
         }
 
-        static async Task LoadChampions()
+        public static async Task LoadChampions()
         {
             try
             {
+                await VerziokBetoltes();
                 using (HttpClient client = new HttpClient())
                 {
                     client.Timeout = TimeSpan.FromSeconds(30);
@@ -48,7 +47,7 @@ namespace LOL
             }
         }
 
-        static async Task VerziokBetoltes()
+        public static async Task VerziokBetoltes()
         {
             try
             {

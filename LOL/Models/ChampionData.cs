@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LOL.Models
 {
-    internal class ChampionData
+    public class ChampionData
     {
         [JsonPropertyName("data")]
         public Dictionary<string, Champion> Data { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LOL.Models
 {
-    internal class ChampionInfo
+    public class ChampionInfo
     {
         public Info Info { get; set; } 
     }

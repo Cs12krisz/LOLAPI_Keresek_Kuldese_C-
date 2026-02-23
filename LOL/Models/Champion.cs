@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LOL.Models
 {
-    internal class Champion
+    public class Champion
     {
 
         [JsonPropertyName("name")]

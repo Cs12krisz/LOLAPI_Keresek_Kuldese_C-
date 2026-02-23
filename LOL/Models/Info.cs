@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LOL.Models
 {
-    internal class Info
+    public class Info
     {
         [JsonPropertyName("attack")]
         public int Attack { get;  set; }
