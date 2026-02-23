@@ -21,5 +21,8 @@ namespace LOL.Models
 
         [JsonPropertyName("info")]
         public Info Info { get; set; }
+
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; }
     }
 }
