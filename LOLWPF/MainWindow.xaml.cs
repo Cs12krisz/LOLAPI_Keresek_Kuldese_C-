@@ -1,4 +1,9 @@
-﻿using System.Text;
+﻿using LOL;
+using LOL.Models;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LOL;
 
 namespace LOLWPF
 {
@@ -17,6 +21,7 @@ namespace LOLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        string[] languages = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,11 +30,82 @@ namespace LOLWPF
 
         public async Task Load()
         {
-            await Program.LoadChampions();
+            await LoadLanguages();
+            await LoadChampions();
 
         }
 
+        public async Task LoadChampions()
+        {
+            try
+            {
+                await Program.VerziokBetoltes();
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    string url = $"https://ddragon.leagueoflegends.com/cdn/{Program.version}/data/{cbxNyelvek.Text}/champion.json";
+
+                    var responseApi = await client.GetStringAsync(url);
+
+                    var response = JsonSerializer.Deserialize<ChampionData>(responseApi);
+                    Program.champions = response.Data.Values.ToList();
+                    lbxChampions.ItemsSource = Program.champions.Select(c => c.Title);
+
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"Kapcsolódási hiba: {httpEx.Message}");
+            }
+            catch (JsonException jsonEx)
+            {
+                Console.WriteLine($"Átalakítási hiba: {jsonEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Hiba: {ex.Message}");
+            }
+        }
+
         public async Task LoadLanguages()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    string url = "https://ddragon.leagueoflegends.com/cdn/languages.json";
+
+                    var responseApi = await client.GetStringAsync(url);
+
+                    string[] response = JsonSerializer.Deserialize<string[]>(responseApi);
+                    languages = response;
+                    cbxNyelvek.ItemsSource = languages;
+                    cbxNyelvek.SelectedIndex = 1;
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"Kapcsolódási hiba: {httpEx.Message}");
+            }
+            catch (JsonException jsonEx)
+            {
+                Console.WriteLine($"Átalakítási hiba: {jsonEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Hiba: {ex.Message}");
+            }
+        }
+
+        private async void cbxNyelvek_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await LoadChampions();
+        }
+
+        private void lbxChampions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
